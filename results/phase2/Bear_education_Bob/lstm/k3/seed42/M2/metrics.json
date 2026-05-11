@@ -1,0 +1,12 @@
+{
+  "MAE": 87.41929626464844,
+  "RMSE": 101.54207611083984,
+  "sMAPE": 84.90284729003906,
+  "sigma_err": 51.666481018066406,
+  "sigma_score": 4.201829609298185,
+  "method": "M2_target_only",
+  "model": "lstm",
+  "target": "Bear_education_Bob",
+  "k": 3,
+  "seed": 42
+}

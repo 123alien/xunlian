@@ -1,0 +1,27 @@
+anomaly:
+  epsilon: 1.0e-08
+  mad_window: 24
+  threshold: 3.0
+data:
+  horizon: 1
+  processed_dir: data/processed
+  raw_dir: data/raw
+  test_ratio: 0.2
+  train_ratio: 0.6
+  val_ratio: 0.2
+  window_size: 24
+model:
+  dropout: 0.2
+  hidden_dim: 128
+  num_layers: 2
+  type: lstm
+seed: 42
+train:
+  batch_size: 64
+  early_stopping_patience: 10
+  epochs: 100
+  finetune_epochs: 30
+  finetune_lr: 0.0001
+  learning_rate: 0.001
+  pretrain_epochs: 50
+  weight_decay: 0.0001
