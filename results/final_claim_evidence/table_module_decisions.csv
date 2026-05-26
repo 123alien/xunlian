@@ -1,0 +1,7 @@
+module,comparison,dataset,scope,evidence,decision
+RevIN,M3_ANCHOR_REVIN vs M1_ANCHOR,COFACTOR-44,all k=3/7/14/30,win rate 95-100%; Wilcoxon p<0.0001,core module
+MSR,M9_REVIN_MSR vs M3_ANCHOR_REVIN,COFACTOR-12,all k=3/7/14/30,win rate 92-100%; p<=0.0005,core module
+MSR,M9_REVIN_MSR vs M3_ANCHOR_REVIN,BDG2-24,all k=3/7/14/30,win rate 79-88%; p<=0.0029,core module
+DPS+Calibration,M11_REVIN_MSR_DPS_CAL vs M3_ANCHOR_REVIN,COFACTOR-12,k=14/30 only,significant for k=14/30; not significant for k=3/7,conditional enhancement
+Ordinary similarity,M2/M5 vs M1/M3,COFACTOR-20,mostly k=3/7/14/30,not significant or harmful,do not claim as core
+Gate,M4/M6,BDG2 pilot,all k,degraded performance,remove

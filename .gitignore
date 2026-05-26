@@ -1,5 +1,21 @@
 # Raw data (170MB, too large)
 data/raw/
+data/raw/**
+
+# Local machine migration archives
+machine_backups/
+migration_backups/
+*.tar.gz
+*.zip
+*.7z
+
+# Large rendered manuscript outputs; keep SVG/PDF/PNG/source CSV instead
+*.tiff
+*.tif
+
+# External benchmark datasets can be re-downloaded from their source repos
+external/**/datasets/
+external/**/datasets_extra/
 
 # Python cache
 __pycache__/

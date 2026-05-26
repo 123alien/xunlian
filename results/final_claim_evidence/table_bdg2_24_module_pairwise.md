@@ -1,0 +1,14 @@
+| dataset | candidate | baseline | k | n | mean_improvement_MAE | median_improvement_MAE | win_rate | negative_transfer_rate | candidate_mean_MAE | baseline_mean_MAE |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| BDG2-24 | M9_REVIN_MSR | M3_ANCHOR_REVIN | 3 | 24 | 0.09826 | 0.002996 | 0.7917 | 0.1667 | 2.613 | 2.711 |
+| BDG2-24 | M9_REVIN_MSR | M3_ANCHOR_REVIN | 7 | 24 | 0.07744 | 0.00446 | 0.8333 | 0.1667 | 2.52 | 2.597 |
+| BDG2-24 | M9_REVIN_MSR | M3_ANCHOR_REVIN | 14 | 24 | 0.09754 | 0.002685 | 0.8333 | 0.1667 | 2.3 | 2.397 |
+| BDG2-24 | M9_REVIN_MSR | M3_ANCHOR_REVIN | 30 | 24 | 0.0723 | 0.005337 | 0.875 | 0.125 | 2 | 2.073 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M3_ANCHOR_REVIN | 3 | 24 | -0.01508 | -3.037e-06 | 0.4167 | 0.5417 | 2.726 | 2.711 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M3_ANCHOR_REVIN | 7 | 24 | 0.2104 | 5.875e-06 | 0.6667 | 0.3333 | 2.387 | 2.597 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M3_ANCHOR_REVIN | 14 | 24 | 0.1543 | 1.099e-05 | 0.6667 | 0.3333 | 2.243 | 2.397 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M3_ANCHOR_REVIN | 30 | 24 | 0.02979 | 2.466e-05 | 0.6667 | 0.3333 | 2.043 | 2.073 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M9_REVIN_MSR | 3 | 24 | -0.1133 | -0.004175 | 0.2917 | 0.6667 | 2.726 | 2.613 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M9_REVIN_MSR | 7 | 24 | 0.133 | 9.176e-07 | 0.5 | 0.5 | 2.387 | 2.52 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M9_REVIN_MSR | 14 | 24 | 0.05673 | 4e-06 | 0.5833 | 0.4167 | 2.243 | 2.3 |
+| BDG2-24 | M11_REVIN_MSR_DPS_CAL | M9_REVIN_MSR | 30 | 24 | -0.04251 | 7.21e-06 | 0.5833 | 0.4167 | 2.043 | 2 |

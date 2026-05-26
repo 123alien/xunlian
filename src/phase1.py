@@ -34,6 +34,7 @@ from src.models import LSTMForecaster
 from src.train import (
     build_windows, fit_scaler, apply_scaler, make_dataloader,
     train_model, pretrain, fine_tune, predict, save_run,
+    fit_scaler_1d, apply_scaler_1d,
 )
 from src.anomaly import rolling_mad_scores
 from src.metrics import compute_all
@@ -145,9 +146,13 @@ def run_phase1(config_path: str = "configs/default.yaml",
             X_src_train_s = apply_scaler(X_src_train, mean_s, std_s)
             X_src_val_s = apply_scaler(X_src_val, mean_s, std_s)
 
-            src_train_ldr = make_dataloader(X_src_train_s, y_src_train,
+            src_y_mean, src_y_std = fit_scaler_1d(y_src_train)
+            y_src_train_s = apply_scaler_1d(y_src_train, src_y_mean, src_y_std)
+            y_src_val_s = apply_scaler_1d(y_src_val, src_y_mean, src_y_std)
+
+            src_train_ldr = make_dataloader(X_src_train_s, y_src_train_s,
                                             cfg.train.batch_size, shuffle=True)
-            src_val_ldr = make_dataloader(X_src_val_s, y_src_val,
+            src_val_ldr = make_dataloader(X_src_val_s, y_src_val_s,
                                           cfg.train.batch_size, shuffle=False)
             source_loaders.append((src_train_ldr, src_val_ldr))
 
@@ -175,13 +180,20 @@ def run_phase1(config_path: str = "configs/default.yaml",
         X_val_s = apply_scaler(X_val, few_mean, few_std)
         X_test_s = apply_scaler(X_test, few_mean, few_std)
 
+        # Scale Y on target data
+        tgt_y_mean, tgt_y_std = fit_scaler_1d(y_few)
+        y_few_s = apply_scaler_1d(y_few, tgt_y_mean, tgt_y_std)
+        y_val_s = apply_scaler_1d(y_val, tgt_y_mean, tgt_y_std)
+        y_test_s = apply_scaler_1d(y_test, tgt_y_mean, tgt_y_std)
+        tgt_y_scaler = (tgt_y_mean, tgt_y_std)
+
         # Use smaller batch size for few-shot data
         few_bs = min(cfg.train.batch_size, len(X_few_s) // 4)
         few_bs = max(few_bs, 4)  # minimum batch size of 4
 
-        few_train_ldr = make_dataloader(X_few_s, y_few, few_bs, shuffle=True)
-        few_val_ldr = make_dataloader(X_val_s, y_val, few_bs, shuffle=False)
-        test_ldr = make_dataloader(X_test_s, y_test, cfg.train.batch_size, shuffle=False)
+        few_train_ldr = make_dataloader(X_few_s, y_few_s, few_bs, shuffle=True)
+        few_val_ldr = make_dataloader(X_val_s, y_val_s, few_bs, shuffle=False)
+        test_ldr = make_dataloader(X_test_s, y_test_s, cfg.train.batch_size, shuffle=False)
 
         # ================================================================
         # M2: Target-only few-shot
@@ -198,7 +210,7 @@ def run_phase1(config_path: str = "configs/default.yaml",
 
         history_m2 = train_model(model_m2, few_train_ldr, few_val_ldr, cfg, device)
 
-        y_true_m2, y_pred_m2 = predict(model_m2, test_ldr, device)
+        y_true_m2, y_pred_m2 = predict(model_m2, test_ldr, device, y_scaler=tgt_y_scaler)
         errors_m2 = np.abs(y_true_m2 - y_pred_m2)
         scores_m2 = rolling_mad_scores(errors_m2, window=cfg.anomaly.mad_window,
                                        epsilon=cfg.anomaly.epsilon)
@@ -230,7 +242,7 @@ def run_phase1(config_path: str = "configs/default.yaml",
         print(f"  [M3] Fine-tuning on {K_DAYS} days of target...")
         history_ft = fine_tune(model_m3, few_train_ldr, few_val_ldr, cfg, device)
 
-        y_true_m3, y_pred_m3 = predict(model_m3, test_ldr, device)
+        y_true_m3, y_pred_m3 = predict(model_m3, test_ldr, device, y_scaler=tgt_y_scaler)
         errors_m3 = np.abs(y_true_m3 - y_pred_m3)
         scores_m3 = rolling_mad_scores(errors_m3, window=cfg.anomaly.mad_window,
                                        epsilon=cfg.anomaly.epsilon)

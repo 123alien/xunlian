@@ -2,14 +2,14 @@
 """Run Phase 2 full experiment matrix.
 
 Usage:
-    # Minimal sanity check (1 building)
+    # Minimal sanity check (3 buildings: 1 target + 2 sources)
     python run_phase2.py --sanity
 
     # Quick test (3 buildings, k=7, LSTM, 1 seed)
     python run_phase2.py --quick
 
-    # Full Phase 2
-    python run_phase2.py --n-buildings 6
+    # Paper-grade Phase 2
+    python run_phase2.py --buildings 12 --seeds 42 43 44 45 46
 
     # Partial run
     python run_phase2.py --k 1 3 7 --models lstm
@@ -26,12 +26,12 @@ from src.phase2 import run_phase2
 
 def main():
     parser = argparse.ArgumentParser(description="TL-TFAD Phase 2: Full experiment")
-    parser.add_argument("--buildings", type=int, default=6,
-                        help="Number of buildings (default: 6)")
+    parser.add_argument("--buildings", type=int, default=12,
+                        help="Number of buildings (default: 12 for paper-grade runs)")
     parser.add_argument("--quick", action="store_true",
                         help="Quick test: 3 buildings, k=7, seed=42, LSTM only")
     parser.add_argument("--sanity", action="store_true",
-                        help="Minimal sanity: 1 building, k=7, seed=42, LSTM, M2 vs M3 only")
+                        help="Minimal sanity: 3 buildings, k=7, seed=42, LSTM")
     parser.add_argument("--core-claim", action="store_true",
                         help="Generate core_claim_check.csv/.md after run")
     parser.add_argument("--skip-preprocess", action="store_true")

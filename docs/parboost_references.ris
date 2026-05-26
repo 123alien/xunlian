@@ -1,0 +1,304 @@
+TY  - JOUR
+AU  - Amasyali, Kadir
+AU  - El-Gohary, Nora M.
+TI  - A review of data-driven building energy consumption prediction studies
+JO  - Renewable and Sustainable Energy Reviews
+VL  - 81
+SP  - 1192
+EP  - 1205
+PY  - 2018
+DO  - 10.1016/j.rser.2017.04.095
+ER  -
+
+TY  - JOUR
+AU  - Bourdeau, Mathieu
+AU  - Zhai, Xiao Qiang
+AU  - Nefzaoui, Elyes
+AU  - Guo, Xiaofeng
+AU  - Chatellier, Patrick
+TI  - Modeling and forecasting building energy consumption: A review of data-driven techniques
+JO  - Sustainable Cities and Society
+VL  - 48
+SP  - 101533
+PY  - 2019
+DO  - 10.1016/j.scs.2019.101533
+ER  -
+
+TY  - JOUR
+AU  - Ribeiro, Mauro
+AU  - Grolinger, Katarina
+AU  - ElYamany, Hany F.
+AU  - Higashino, Wilson A.
+AU  - Capretz, Miriam A. M.
+TI  - Transfer learning with seasonal and trend adjustment for cross-building energy forecasting
+JO  - Energy and Buildings
+VL  - 165
+SP  - 352
+EP  - 363
+PY  - 2018
+DO  - 10.1016/j.enbuild.2018.01.034
+ER  -
+
+TY  - JOUR
+AU  - Xing, Z.
+AU  - Pan, Y.
+AU  - Yang, Y.
+AU  - Yuan, X.
+AU  - Liang, Y.
+AU  - Huang, Z.
+TI  - Transfer learning integrating similarity analysis for short-term and long-term building energy consumption prediction
+JO  - Applied Energy
+VL  - 365
+SP  - 123276
+PY  - 2024
+DO  - 10.1016/j.apenergy.2024.123276
+ER  -
+
+TY  - JOUR
+AU  - Wei, B.
+AU  - Li, K.
+AU  - Zhou, S.
+AU  - Xue, W.
+AU  - Xu, C.
+TI  - An instance based multi-source transfer learning strategy for building's short-term electricity loads prediction under sparse data scenarios
+JO  - Journal of Building Engineering
+VL  - 85
+SP  - 108713
+PY  - 2024
+DO  - 10.1016/j.jobe.2024.108713
+ER  -
+
+TY  - JOUR
+AU  - Miller, Clayton
+AU  - Kathirgamanathan, Arjunan
+AU  - Picchetti, Beatrice
+AU  - Arjunan, Prageeth
+AU  - Park, June Young
+AU  - Nagy, Zoltan
+AU  - Raftery, Paul
+AU  - Hobson, Barry
+AU  - Shi, Zhe
+AU  - Meggers, Forrest
+TI  - The Building Data Genome Project 2, energy meter data from the ASHRAE Great Energy Predictor III competition
+JO  - Scientific Data
+VL  - 7
+SP  - 368
+PY  - 2020
+DO  - 10.1038/s41597-020-00712-x
+ER  -
+
+TY  - CONF
+AU  - Zeng, Ailing
+AU  - Chen, Muxi
+AU  - Zhang, Lei
+AU  - Xu, Qiang
+TI  - Are Transformers Effective for Time Series Forecasting?
+T2  - Proceedings of the AAAI Conference on Artificial Intelligence
+VL  - 37
+IS  - 9
+SP  - 11121
+EP  - 11128
+PY  - 2023
+DO  - 10.1609/aaai.v37i9.26317
+ER  -
+
+TY  - JOUR
+AU  - Breiman, Leo
+TI  - Random Forests
+JO  - Machine Learning
+VL  - 45
+SP  - 5
+EP  - 32
+PY  - 2001
+DO  - 10.1023/A:1010933404324
+ER  -
+
+TY  - JOUR
+AU  - Geurts, Pierre
+AU  - Ernst, Damien
+AU  - Wehenkel, Louis
+TI  - Extremely randomized trees
+JO  - Machine Learning
+VL  - 63
+SP  - 3
+EP  - 42
+PY  - 2006
+DO  - 10.1007/s10994-006-6226-1
+ER  -
+
+TY  - JOUR
+AU  - Friedman, Jerome H.
+TI  - Greedy function approximation: A gradient boosting machine
+JO  - The Annals of Statistics
+VL  - 29
+IS  - 5
+SP  - 1189
+EP  - 1232
+PY  - 2001
+DO  - 10.1214/aos/1013203451
+ER  -
+
+TY  - JOUR
+AU  - Hyndman, Rob J.
+AU  - Koehler, Anne B.
+TI  - Another look at measures of forecast accuracy
+JO  - International Journal of Forecasting
+VL  - 22
+IS  - 4
+SP  - 679
+EP  - 688
+PY  - 2006
+DO  - 10.1016/j.ijforecast.2006.03.001
+ER  -
+
+TY  - JOUR
+AU  - Lien, Synne Kvaale
+AU  - Walnum, Harald Taxt
+AU  - Sørensen, Åse Lekang
+TI  - COFACTOR Drammen dataset - 4 years of hourly energy use data from 45 public buildings in Drammen, Norway
+JO  - Scientific Data
+VL  - 12
+SP  - 393
+PY  - 2025
+DO  - 10.1038/s41597-025-04708-3
+ER  -
+
+TY  - DATA
+AU  - Sørensen, Åse Lekang
+AU  - Walnum, Harald Taxt
+AU  - Lien, Synne Kvaale
+TI  - COFACTOR Drammen dataset - 4 years of hourly energy use data from 45 public buildings in Drammen, Norway
+PB  - Zenodo
+PY  - 2024
+DO  - 10.5281/zenodo.11060089
+ER  -
+
+TY  - CONF
+AU  - Kim, Taesung
+AU  - Kim, Jinhee
+AU  - Tae, Yunwon
+AU  - Park, Cheonbok
+AU  - Choi, Jang-Ho
+AU  - Choo, Jaegul
+TI  - Reversible Instance Normalization for Accurate Time-Series Forecasting against Distribution Shift
+T2  - International Conference on Learning Representations
+PY  - 2022
+UR  - https://openreview.net/forum?id=cGDAkQo1C0p
+ER  -
+
+TY  - JOUR
+AU  - Drgona, Jan
+AU  - Arroyo, Javier
+AU  - Cupeiro Figueroa, Iago
+AU  - Blum, David
+AU  - Arendt, Krzysztof
+AU  - Kim, Donghun
+AU  - Olle, Enric Perarnau
+AU  - Oravec, Juraj
+AU  - Wetter, Michael
+AU  - Vrabie, Draguna L.
+AU  - Helsen, Lieve
+TI  - All you need to know about model predictive control for buildings
+JO  - Annual Reviews in Control
+VL  - 50
+SP  - 190
+EP  - 232
+PY  - 2020
+DO  - 10.1016/j.arcontrol.2020.09.001
+ER  -
+
+TY  - JOUR
+AU  - Kathirgamanathan, Anjukan
+AU  - De Rosa, Mattia
+AU  - Mangina, Eleni
+AU  - Finn, Donal P.
+TI  - Data-driven predictive control for unlocking building energy flexibility: A review
+JO  - Renewable and Sustainable Energy Reviews
+VL  - 135
+SP  - 110120
+PY  - 2021
+DO  - 10.1016/j.rser.2020.110120
+ER  -
+
+TY  - JOUR
+AU  - Pinto, Giovanni
+AU  - Wang, Zhe
+AU  - Roy, A.
+AU  - Hong, Tianzhen
+AU  - Capozzoli, Alfonso
+TI  - Transfer learning for smart buildings: A critical review of algorithms, applications, and future perspectives
+JO  - Advances in Applied Energy
+VL  - 5
+SP  - 100084
+PY  - 2022
+DO  - 10.1016/j.adapen.2022.100084
+ER  -
+
+TY  - JOUR
+AU  - Kazmi, Hussain
+AU  - Suykens, Johan
+AU  - Driesen, Johan
+TI  - Transfer learning in demand response: A review of algorithms for data-efficient modelling and control
+JO  - Energy and AI
+VL  - 7
+SP  - 100126
+PY  - 2022
+DO  - 10.1016/j.egyai.2021.100126
+ER  -
+
+TY  - CONF
+AU  - Zhou, Haoyi
+AU  - Zhang, Shanghang
+AU  - Peng, Jieqi
+AU  - Zhang, Shuai
+AU  - Li, Jianxin
+AU  - Xiong, Hui
+AU  - Zhang, Wancai
+TI  - Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting
+T2  - Proceedings of the AAAI Conference on Artificial Intelligence
+VL  - 35
+IS  - 12
+SP  - 11106
+EP  - 11115
+PY  - 2021
+DO  - 10.1609/aaai.v35i12.17325
+ER  -
+
+TY  - CONF
+AU  - Wu, Haixu
+AU  - Xu, Jiehui
+AU  - Wang, Jianmin
+AU  - Long, Mingsheng
+TI  - Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting
+T2  - Advances in Neural Information Processing Systems
+VL  - 34
+SP  - 22419
+EP  - 22430
+PY  - 2021
+UR  - https://proceedings.neurips.cc/paper/2021/hash/bcc0d400288793e8bdcd7c19a8ac0c2b-Abstract.html
+ER  -
+
+TY  - CONF
+AU  - Nie, Yuqi
+AU  - Nguyen, Nam H.
+AU  - Sinthong, Phanwadee
+AU  - Kalagnanam, Jayant
+TI  - A Time Series is Worth 64 Words: Long-term Forecasting with Transformers
+T2  - International Conference on Learning Representations
+PY  - 2023
+UR  - https://openreview.net/forum?id=Jbdc0vTOcol
+ER  -
+
+TY  - CONF
+AU  - Liu, Yong
+AU  - Hu, Tengge
+AU  - Zhang, Haoran
+AU  - Wu, Haixu
+AU  - Wang, Shiyu
+AU  - Ma, Lintao
+AU  - Long, Mingsheng
+TI  - iTransformer: Inverted Transformers Are Effective for Time Series Forecasting
+T2  - International Conference on Learning Representations
+PY  - 2024
+UR  - https://openreview.net/forum?id=JePfAI8fah
+ER  -

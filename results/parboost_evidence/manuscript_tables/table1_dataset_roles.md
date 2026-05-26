@@ -1,0 +1,5 @@
+| dataset            | target_buildings | source_policy             | split                  | k_days       | seeds | main_role                                                                  |
+| ------------------ | ---------------- | ------------------------- | ---------------------- | ------------ | ----- | -------------------------------------------------------------------------- |
+| BDG2-24            | 24               | leave target building out | 60/20/20 chronological | 3, 7, 14, 30 | 5     | full method matrix; neural-transfer failure and PARBoost main benchmark    |
+| BDG2-120 active    | 120              | leave target building out | 60/20/20 chronological | 3, 7, 14, 30 | 5     | large active-building robustness against strong simple/classical baselines |
+| COFACTOR-44 active | 44               | leave target building out | 60/20/20 chronological | 3, 7, 14, 30 | 5     | external active-building boundary validation                               |

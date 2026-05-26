@@ -1,4 +1,4 @@
-"""Forecasting models: LSTM and DLinear."""
+"""Forecasting models: LSTM, DLinear, and PatchTST-style Transformer."""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -83,3 +83,65 @@ class DLinear(nn.Module):
             out += self.linear_trend[i](t_i) + self.linear_seasonal[i](s_i)
 
         return out  # (B, 1)
+
+
+class PatchTSTForecaster(nn.Module):
+    """Compact PatchTST-style baseline for single-step load forecasting.
+
+    The implementation keeps the key PatchTST idea used in recent forecasting
+    papers: split each variable into temporal patches, embed patches, encode
+    them with a Transformer, and aggregate across variables for prediction.
+    It is intentionally small because the input window is only 24 hours.
+    """
+
+    def __init__(
+        self,
+        window_size: int,
+        input_dim: int,
+        patch_len: int = 6,
+        stride: int = 3,
+        d_model: int = 64,
+        n_heads: int = 4,
+        num_layers: int = 2,
+        dropout: float = 0.1,
+    ):
+        super().__init__()
+        if patch_len > window_size:
+            raise ValueError("patch_len must be <= window_size")
+        self.window_size = window_size
+        self.input_dim = input_dim
+        self.patch_len = patch_len
+        self.stride = stride
+        self.n_patches = 1 + (window_size - patch_len) // stride
+
+        self.patch_proj = nn.Linear(patch_len, d_model)
+        self.pos_embedding = nn.Parameter(torch.zeros(1, self.n_patches, d_model))
+        self.channel_embedding = nn.Parameter(torch.zeros(1, input_dim, 1, d_model))
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=d_model,
+            nhead=n_heads,
+            dim_feedforward=d_model * 4,
+            dropout=dropout,
+            batch_first=True,
+            activation="gelu",
+            norm_first=True,
+        )
+        self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+        self.head = nn.Sequential(
+            nn.LayerNorm(d_model),
+            nn.Linear(d_model, 1),
+        )
+        nn.init.trunc_normal_(self.pos_embedding, std=0.02)
+        nn.init.trunc_normal_(self.channel_embedding, std=0.02)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # x: (B, T, C) -> patches: (B, C, N, patch_len)
+        patches = x.permute(0, 2, 1).unfold(dimension=-1, size=self.patch_len, step=self.stride)
+        z = self.patch_proj(patches)
+        z = z + self.pos_embedding[:, None, :, :] + self.channel_embedding
+        bsz, channels, n_patches, d_model = z.shape
+        z = z.reshape(bsz * channels, n_patches, d_model)
+        z = self.encoder(z)
+        z = z.mean(dim=1).reshape(bsz, channels, d_model)
+        z = z.mean(dim=1)
+        return self.head(z)

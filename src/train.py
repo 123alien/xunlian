@@ -61,6 +61,23 @@ def apply_scaler(X: np.ndarray, mean: np.ndarray, std: np.ndarray) -> np.ndarray
     return (X - mean) / std
 
 
+def fit_scaler_1d(y: np.ndarray):
+    """Fit a Z-score scaler for 1D target values."""
+    mean = float(np.mean(y))
+    std = float(np.std(y))
+    if std < 1e-8:
+        std = 1.0
+    return mean, std
+
+
+def apply_scaler_1d(y: np.ndarray, mean: float, std: float) -> np.ndarray:
+    return (y - mean) / std
+
+
+def inverse_scaler_1d(y: np.ndarray, mean: float, std: float) -> np.ndarray:
+    return y * std + mean
+
+
 # ---------------------------------------------------------------------------
 # Training loop
 # ---------------------------------------------------------------------------
@@ -255,8 +272,12 @@ def fine_tune(model, train_loader, val_loader, config: Config, device,
 # Prediction
 # ---------------------------------------------------------------------------
 
-def predict(model, loader, device) -> tuple[np.ndarray, np.ndarray]:
-    """Generate predictions. Returns (y_true, y_pred)."""
+def predict(model, loader, device, y_scaler=None) -> tuple[np.ndarray, np.ndarray]:
+    """Generate predictions. Returns (y_true_raw, y_pred_raw).
+
+    If y_scaler=(mean, std) is provided, inverse-transforms predictions
+    and y_true back to the original scale.
+    """
     model.eval()
     y_true_list, y_pred_list = [], []
     with torch.no_grad():
@@ -265,7 +286,13 @@ def predict(model, loader, device) -> tuple[np.ndarray, np.ndarray]:
             pred = model(X_batch).squeeze(-1).cpu().numpy()
             y_true_list.append(y_batch.numpy())
             y_pred_list.append(pred)
-    return np.concatenate(y_true_list), np.concatenate(y_pred_list)
+    y_true = np.concatenate(y_true_list)
+    y_pred = np.concatenate(y_pred_list)
+    if y_scaler is not None:
+        y_mean, y_std = y_scaler
+        y_true = inverse_scaler_1d(y_true, y_mean, y_std)
+        y_pred = inverse_scaler_1d(y_pred, y_mean, y_std)
+    return y_true, y_pred
 
 
 # ---------------------------------------------------------------------------
@@ -322,7 +349,9 @@ def prepare_building_data(split: dict, feature_cols: list[str],
 def save_run(output_dir: str, config: Config, metrics: dict,
              predictions: np.ndarray | None = None,
              anomaly_scores: np.ndarray | None = None,
-             history: dict | None = None):
+             history: dict | None = None,
+             model_state: dict | None = None,
+             manifest: dict | None = None):
     """Save experiment outputs."""
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -335,6 +364,13 @@ def save_run(output_dir: str, config: Config, metrics: dict,
     with open(out / "metrics.json", "w") as f:
         json.dump({k: float(v) if isinstance(v, (np.floating, np.integer)) else v
                    for k, v in metrics.items()}, f, indent=2)
+
+    if manifest is not None:
+        with open(out / "run_manifest.json", "w") as f:
+            json.dump(manifest, f, indent=2, default=str)
+
+    if model_state is not None:
+        torch.save(model_state, out / "model.pt")
 
     # Predictions
     if predictions is not None:

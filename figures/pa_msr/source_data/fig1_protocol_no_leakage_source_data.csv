@@ -1,0 +1,5 @@
+item,value
+adaptation,first k days of target training period
+source,non-target source-building training periods
+validation,model selection and PA-MSR+ residual calibration only
+test,held out until final evaluation
